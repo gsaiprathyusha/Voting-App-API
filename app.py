@@ -4,12 +4,10 @@ from flask_restful import Resource,Api
 app = Flask(__name__)
 api = Api(app)
 
-@app.route('/')
-def home():
-    return jsonify({"message" : "successfully Done deploying"})
+class Home(Resource):
+    def get(self):
+        return {"message" : "Deployed!"}
 
-@app.route('/home')
-def home_1():
-    return jsonify({"message" : "successfully Done deploying"})
+api.add_resource(Home, "/")
 
 app.run(debug=True)
